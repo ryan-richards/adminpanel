@@ -1,35 +1,34 @@
 <template>
 <div class="title has-text-white">Inquiry List : {{events.length}}</div>
 
+<div v-for="event in events" :key="event.id">
 
-<div v-show="show"
-  class="card mb-5"
- v-for="event in events" :key="event.id">
-  <header  v-bind:class="{ green: event.paid }" class="card-header">
+<div class="card mb-5">
+  <header v-bind:class="{ green: event.paid }" class="card-header">
     <p class="card-header-title has-text-white">
-      {{event.email}}
+      {{event.email}} : {{ formatDate(event.date) }}
     </p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
+    <button @click="event.expand = !event.expand"  class="card-header-icon" aria-label="more options">
+     <span class="iconify" data-icon="uim:angle-down" data-width="35" data-height="35"></span>
     </button>
   </header>
-  <div class="card-content">
+  <div v-if="event.expand" class="card-content">
     <div class="span">
       <p>Venue: {{event.venue}}</p>
       <p>Guests : {{event.guests}}</p>
-      <p>Event Date : {{event.date}}</p>
+      <p>Event Date : {{ formatDate(event.date) }}</p>
       <p>Notes : {{event.notes}}</p>
     </div>
   </div>
   <footer class="card-footer">
-    
-    <a @click="handlePaid(event.id)" class="card-footer-item paid">Paid</a>
+    <a v-show="!event.paid" @click="handlePaid(event.id)" class="card-footer-item paid">Paid</a>
     <a v-bind:href="`mailto:` + event.email + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Contact</a>
     <a @click="handleDelete(event.id) , removeElement()" class="card-footer-item danger">Delete</a>
   </footer>
+</div>  
+  
 </div>
+
 
 </template>
 
@@ -37,13 +36,13 @@
 
 
 import { supabase } from "../supabase"
+import formatDateMixin from '../mixins/formatDateDayJs.js';
 
 export default {
     name: "bookings",
     data() {
         return {
             events:[],
-            show : true
         };
     },
     async mounted() {
@@ -97,7 +96,13 @@ export default {
     removeElement: function (index) {
     this.events.splice(index, 1);
   }
-}
+},
+mixins: [formatDateMixin],
+        computed: {
+            formattedDate() {
+                return this.formatDate(this.date);
+            }
+        }
       
 }
 
