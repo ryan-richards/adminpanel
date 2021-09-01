@@ -2,7 +2,7 @@
 <div>
     <div class="columns pt-6">
         <div class="column has-text-centered">
-             <router-link to="/inquiry">
+             <router-link to="/events">
             <div class="card p-6">
                 <div class="subtitle has-text-white">Events</div>
             </div>

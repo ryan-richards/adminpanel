@@ -45,7 +45,7 @@ export default {
     const handleLogin = async () => {
       try {
         loading.value = true
-        const { error } = await supabase.auth.signUp({ email: email.value,
+        const { error } = await supabase.auth.signIn({ email: email.value,
         password: password.value
         })
         alert("Logged In")

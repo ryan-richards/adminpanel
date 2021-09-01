@@ -126,8 +126,6 @@ export default {
     const date = ref("");
     const price = ref("");
     const notes = ref("");
-    const deposit = ref("");
-    const full = ref("");
     const mobile = ref("");
 
     const handleSubmit = async () => {
