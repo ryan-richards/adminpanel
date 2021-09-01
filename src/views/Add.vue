@@ -1,4 +1,7 @@
 <template>
+
+<div class="container pb-6">
+
   <div class="title">Add Event</div>
   <div class="subtitle">Enter details below</div>
   <form v-on:submit.prevent="handleSubmit" ref="Quote" name="Quote">
@@ -111,6 +114,10 @@
       </div>
     </div>
   </form>
+
+</div>
+
+  
 </template>
 
 <script>
