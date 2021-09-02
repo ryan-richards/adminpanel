@@ -1,6 +1,6 @@
 <template>
 
-<div class="container pb-6">
+
 
   <div class="title">Add Event</div>
   <div class="subtitle">Enter details below</div>
@@ -115,7 +115,7 @@
     </div>
   </form>
 
-</div>
+
 
   
 </template>

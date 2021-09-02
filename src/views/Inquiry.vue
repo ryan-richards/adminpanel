@@ -1,7 +1,6 @@
 <template>
-<div class="container">
+
     <Email />
-</div>
 
 </template>
 

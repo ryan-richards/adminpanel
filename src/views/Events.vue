@@ -1,7 +1,7 @@
 <template>
-<div class="container">
 
-  <div class="title has-text-white">Inquiry List : {{events.length}}</div>
+
+<div class="title has-text-white">Inquiry List : {{events.length}}</div>
 
 <div v-for="event in events" :key="event.id">
 
@@ -31,7 +31,6 @@
   
 </div>
 
-</div>
 
 
 

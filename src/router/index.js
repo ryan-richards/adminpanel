@@ -3,6 +3,9 @@ import Home from '../views/Home.vue'
 import Inquiry from '../views/Inquiry.vue'
 import Add from '../views/Add.vue'
 import Events from '../views/Events.vue'
+import AddBlog from '../views/AddBlog.vue'
+import BlogAdmin from '../views/BlogAdmin.vue'
+import BlogEdit from '../views/BlogEdit.vue'
 
 const routes = [
     {
@@ -24,6 +27,19 @@ const routes = [
         path: '/events',
         name: 'Events',
         component: Events
+    },
+    {
+        path: '/addblog',
+        name: 'AddBlog',
+        component: AddBlog
+    },
+    {
+        path: '/blogadmin',
+        name: 'blogadmin',
+        component: BlogAdmin
+    },
+    { path: '/blogedit/:id', 
+      component: BlogEdit 
     },
 
 

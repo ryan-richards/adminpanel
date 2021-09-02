@@ -1,9 +1,8 @@
 <template>
   <div class="container">
     <router-link to="/"><div class="subtitle has-text-white pt-6 pb-4 ">Brook Avenue Admin</div></router-link>
-  </div>
-    
     <router-view />
+  </div>
 </template>
 
 <script>

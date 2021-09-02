@@ -1,8 +1,8 @@
 <template>
-<div class="container">
+
     <Dash v-if="store.user" />
     <Auth v-else />
-</div>
+
 </template>
 
 
