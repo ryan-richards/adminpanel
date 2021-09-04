@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container pl-3 pr-3">
     <router-link to="/"><div class="subtitle has-text-white pt-6 pb-4 ">Brook Avenue Admin</div></router-link>
     <router-view />
   </div>

@@ -1,7 +1,10 @@
 <template>
-  <form class="row flex flex-center" @submit.prevent="handleLogin">
-    <div class="col-6 form-widget">
-      <h1 class="header">Brook Avenue Admin</h1>
+
+<div class="columns pt-6 is-centered">
+  <div class="column is-half">
+
+    <form class="container p-3" @submit.prevent="handleLogin">
+    <div class="form-widget">
       <p class="description">Sign in below</p>
       <div>
         <input
@@ -29,6 +32,10 @@
       </div>
     </div>
   </form>
+
+  </div>
+</div>
+
 </template>
 
 <script>
