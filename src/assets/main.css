@@ -81,7 +81,7 @@ button.primary,
   border-radius: var(--custom-border-radius);
   padding: 0;
   background-color: transparent;
-  margin-bottom: 1em;
+  margin-bottom: -0.5em;
 }
 
 input {

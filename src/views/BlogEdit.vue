@@ -1,8 +1,7 @@
 <template>
-  <div v-for="post in posts" :key="post.id">
     <div class="title">Add Blog Post</div>
     <div class="subtitle">Enter details below</div>
-    <form v-on:submit.prevent="handleSubmit(post.id)" name="Quote">
+    <form @submit.prevent="updatePost" name="Quote">
       <div class="field">
         <label class="label">Category</label>
         <div class="control">
@@ -11,7 +10,7 @@
             name="category"
             type="text"
             placeholder="Updates"
-            v-model="post.category"
+            v-model="category"
           />
         </div>
       </div>
@@ -23,7 +22,7 @@
             name="title"
             type="text"
             placeholder="Blog Title"
-            v-model="post.title"
+            v-model="title"
           />
         </div>
       </div>
@@ -35,80 +34,112 @@
             name="content"
             placeholder="Paste markdown here"
             rows="10"
-            v-model="post.content"
+            v-model="content"
           ></textarea>
         </div>
       </div>
 
-      <div class="field is-grouped">
-        <div class="control">
-          <button type="submit" class="button">Update</button>
-        </div>
-      </div>
+     <div>
+      <input
+        type="submit"
+        class="button block primary"
+        :value="loading ? 'Loading ...' : 'Update'"
+        :disabled="loading"
+      />
+    </div>
     </form>
-  </div>
 </template>
 
+
+
+
 <script>
-import { ref } from "vue";
+
+import { onMounted, ref } from "vue"
 import { supabase } from "../supabase";
+import { useRoute} from "vue-router"
 
 export default {
-  name: "blog-posts",
-  data() {
-    return {
-      posts: [],
-      show: true,
-    };
-  },
-  async mounted() {
-    const { data, error } = await supabase
-      .from("blog-posts")
-      .select("*")
-      .eq("id", this.$route.params.id);
-    console.log(data);
-    if (error) {
-      console.error(error);
-    } else {
-      this.posts = data;
-    }
-  },
+    
+    setup() {
+        const loading = ref(true)
+        const category = ref("")
+        const title = ref("")
+        const content = ref("")
+        const id = ref("")
 
-  setup() {
-    const category = ref("");
-    const title = ref("");
-    const content = ref("");
+        const route = useRoute()
 
-    const handleSubmit = async (id) => {
-      try {
-        const { data, error } = await supabase
+    async function getPost() {
+
+        try {
+        loading.value = true
+
+        let { data, error, status } = await supabase
           .from("blog-posts")
-          .update([
-            {
-              category: category.value,
-              title: title.value,
-              content: content.value,
-            },
-          ])
-          .eq("id", id);
-        if (error) throw error;
-        alert("Blog Posted");
+          .select(`*`)
+          .eq("id", route.params.id)
+          .single()
+        if (error && status !== 406) throw error
+
+        if(data){
+          category.value = data.category
+          title.value = data.title
+          content.value = data.content
+          id.value = data.id
+        }
+
       } catch (error) {
-        alert(error.error_description || error.message);
+        alert(error.message)
+      } finally {
+        loading.value = false
       }
-    };
+
+    }
+
+
+    async function updatePost() {
+        try {
+            loading.value = true
+
+            const updates = {
+            id: id.value,
+            category: category.value,
+            title: title.value,
+            content: content.value,
+            updated_at: new Date(),
+            }
+
+            let { error } = await supabase.from("blog-posts").upsert(updates, {
+            returning: "minimal", // Don't return the value after inserting
+            })
+
+        if (error) throw error
+        } catch (error) {
+            alert(error.message)
+        } finally {
+            loading.value = false
+        }
+        }
+
+        onMounted(() => {
+         getPost()
+        })
 
     return {
+      loading,
       category,
       title,
       content,
-      handleSubmit,
-    };
-  },
-  methods: {
-    removeElement: function (index) {
-      this.posts.splice(index, 1);
+      id,
+      updatePost,
+    }
+
+
     },
-  },
-};
+}
+
+
 </script>
+
+
