@@ -7,8 +7,8 @@
     <input type="text" v-model="search" placeholder="Search"/>
   </div>
 
-<div v-for="(event, index) in filteredList" :key="event.id">
-  <event-item :key="`event-${index}`" :id="event.id" :time="event.time" :expand="event.expand" :paid="event.paid" :email="event.email" :venue="event.venue" :guests="event.guests" :date="event.date" :notes="event.notes"/>
+<div v-for="event in filteredList" :key="event.id">
+  <event-item v-bind="event"/>
 </div>
 
 </template>

@@ -1,5 +1,5 @@
 <template>
-<div class="title has-text-white">Inquiry List : {{posts.length}}</div>
+<div class="title has-text-white">Blog List : {{posts.length}}</div>
 
 
 <div v-show="show" class="card mb-5" v-for="post in posts" :key="post.id">
