@@ -67,7 +67,6 @@ export default {
         const title = ref("")
         const content = ref("")
         const id = ref("")
-
         const route = useRoute()
 
     async function getPost() {

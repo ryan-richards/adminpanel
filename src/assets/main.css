@@ -72,6 +72,14 @@ button.primary,
   margin-bottom: 0rem;
 }
 
+.subtitle {
+  color: whitesmoke;
+}
+
+.label {
+  color: whitesmoke;
+}
+
 /* Widgets */
 
 .card {

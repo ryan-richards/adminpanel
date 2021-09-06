@@ -6,6 +6,7 @@ import Events from '../views/Events.vue'
 import AddBlog from '../views/AddBlog.vue'
 import BlogAdmin from '../views/BlogAdmin.vue'
 import BlogEdit from '../views/BlogEdit.vue'
+import EventEdit from '../views/EventEdit.vue'
 
 const routes = [
     {
@@ -41,6 +42,9 @@ const routes = [
     { path: '/blogedit/:id', 
       component: BlogEdit 
     },
+    { path: '/eventedit/:id', 
+    component: EventEdit 
+  },
 
 
 ]
