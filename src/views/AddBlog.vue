@@ -66,7 +66,8 @@ export default {
     const category = ref("");
     const title = ref("");
     const content = ref("");
-
+    const short = ref("")
+    const thumbnail = ref("")
 
     const handleSubmit = async () => {
       try {
@@ -77,6 +78,8 @@ export default {
               category: category.value,
               title: title.value,
               content: content.value,
+              thumbnail: thumbnail.value,
+              short: short.value,
             },
           ]);
         if (error) throw error;
@@ -92,6 +95,8 @@ export default {
   category,
   title,
   content,
+  thumbnail,
+  short,
       handleSubmit,
     };
   }

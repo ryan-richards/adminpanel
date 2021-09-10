@@ -54,7 +54,7 @@ export default {
 <style>
 
 a{
-color:rgb(172, 208, 240)
+color:rgb(231, 231, 231)
 }
 
 .card-footer-item:hover {
@@ -69,11 +69,11 @@ color:rgb(172, 208, 240)
 
 .card-footer-item.paid:hover{
   color: aliceblue;
-   background-color:rgb(74, 190, 118)
+   background-color:rgb(74, 133, 95)
 }
 
 .card-header.green {
-  background-color:rgb(74, 190, 118)
+  background-color:rgb(74, 133, 95)
 }
 
 .card-footer-item.edit:hover{
