@@ -81,4 +81,10 @@ color:rgb(231, 231, 231)
    background-color:rgb(180, 116, 63)
 }
 
+input[type='text'],
+input[type='number'],
+textarea {
+  font-size: 16px;
+}
+
 </style>
