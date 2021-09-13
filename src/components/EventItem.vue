@@ -1,9 +1,9 @@
 <template>
 
-<div class="card mb-5">
-  <header v-bind:class="{ green: paid }" class="card-header">
+<div class="card mb-2">
+  <header v-bind:class="{ green: paid}" class="card-header">
     <p v-if="time" class="card-header-title has-text-white">
-      {{email}} : {{ formatDate(date) }} / {{formatTime(date + time)}}
+      {{name}} : {{ formatDate(date) }} / {{formatTime(date + time)}}
     </p>
       <p v-else class="card-header-title has-text-white">
       {{email}} : {{ formatDate(date) }} 
@@ -12,7 +12,7 @@
      <span class="iconify" data-icon="uim:angle-down" data-width="35" data-height="35"></span>
     </button>
   </header>
-  <div v-show="expand" class="card-content">
+  <div v-show="expand" class="card-content pt-4">
     <div class="span">
       <p>Venue: {{venue}}</p>
       <p>Guests : {{guests}}</p>
@@ -20,7 +20,7 @@
       <p>Notes : {{notes}}</p>
     </div>
   </div>
-  <footer class="card-footer">
+  <footer v-show="expand" class="card-footer">
     <a v-show="!paid" @click="handlePaid(id)" class="card-footer-item paid">Paid</a>
     <router-link class="card-footer-item edit" :to="`/eventedit/${id}`">Edit</router-link>
     <a v-bind:href="`mailto:` + email + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Contact</a>
@@ -52,6 +52,7 @@ export default {
     paid: Boolean,
     expand: Boolean,
     time: String,
+    name: String,
   },
         setup(){
         const handleDelete = async (id) => {

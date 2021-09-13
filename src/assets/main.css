@@ -92,6 +92,10 @@ button.primary,
   margin-bottom: -0.5em;
 }
 
+.card-header {
+  border-radius: var(--custom-border-radius);
+}
+
 input {
   width: 100%;
   border-radius: 5px;
