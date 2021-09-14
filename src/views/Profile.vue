@@ -13,7 +13,7 @@
       <input id="website" type="website" v-model="website" />
     </div>
 
-    <div>
+    <div class="pt-2">
       <input
         type="submit"
         class="button block primary"
@@ -22,8 +22,8 @@
       />
     </div>
 
-    <div>
-      <button class="button block" @click="signOut" :disabled="loading">
+    <div class="pt-2">
+      <button class="button" @click="signOut" :disabled="loading">
         Sign Out
       </button>
     </div>
@@ -34,6 +34,7 @@
 import { supabase } from "../supabase"
 import { store } from "../store"
 import { onMounted, ref } from "vue"
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -41,6 +42,8 @@ export default {
     const username = ref("")
     const website = ref("")
     const avatar_url = ref("")
+
+    const router = useRouter()
 
     async function getProfile() {
       try {
@@ -97,10 +100,10 @@ export default {
         loading.value = true
         let { error } = await supabase.auth.signOut()
         if (error) throw error
-      } catch (error) {
-        alert(error.message)
+      } catch (error) {  
       } finally {
         loading.value = false
+        router.push("/login")
       }
     }
 

@@ -9,8 +9,8 @@
 <script>
 import { store } from "../store"
 import { supabase } from "../supabase"
-import Auth from "../components/Auth.vue"
-import Dash from "../components/Dash.vue"
+import Auth from "./Auth.vue"
+import Dash from "./Dash.vue"
 
 export default {
   components: {

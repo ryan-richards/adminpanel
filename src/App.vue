@@ -1,6 +1,15 @@
 <template>
-  <div class="container pl-3 pr-3">
-    <router-link to="/"><div class="subtitle has-text-white pt-6 pb-4 ">Brook Avenue Admin</div></router-link>
+  <div class="container pl-4 pr-4 pb-6">
+    <div class="level is-mobile">
+      <div class="level-left">
+          <router-link to="/" class="level-item pt-6"><div class="subtitle has-text-white">Brook Avenue Admin</div></router-link>
+      </div>
+   <div class="level-right">
+          <router-link to="/profile" class="level-item pt-6"><span class="iconify" data-icon="healthicons:ui-user-profile" data-width="35" data-height="35"></span></router-link>
+   </div>
+    
+    </div>
+
     <router-view />
   </div>
 </template>

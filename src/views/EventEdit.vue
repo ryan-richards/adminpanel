@@ -142,7 +142,7 @@
 <script>
 import { onMounted, ref } from "vue";
 import { supabase } from "../supabase";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -160,6 +160,7 @@ export default {
 
     const id = ref("");
     const route = useRoute();
+    const router = useRouter();
 
     async function getEvent() {
       try {
@@ -216,6 +217,7 @@ export default {
           returning: "minimal", // Don't return the value after inserting
         });
         alert("Updated");
+        router.push({ path: '/events' })
         if (error) throw error;
       } catch (error) {
         alert(error.message);

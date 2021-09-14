@@ -1,5 +1,5 @@
 <template>
-  <div class="title has-text-white">Events : {{ events.length }}</div>
+  <div class="title has-text-white">Events : {{filteredDate.length}}</div>
 
   <div class="search-wrapper pb-2">
     <input type="text" v-model="search" placeholder="Search" />
@@ -67,10 +67,10 @@ export default {
     filteredDate() {
       return this[this.filterKey].filter((event) => {
         return (
-          event.date.toLowerCase().includes(this.search.toLowerCase().replace(/ +/g,"")) ||
-          event.email.toLowerCase().includes(this.search.toLowerCase()) ||
-          event.venue.toLowerCase().includes(this.search.toLowerCase()) ||
-          event.name.toLowerCase().includes(this.search.toLowerCase().replace(/ +/g,"")) 
+          event.date.toLowerCase().replace(/ +/g,"").includes(this.search.toLowerCase().replace(/ +/g,"")) ||
+          event.email.toLowerCase().replace(/ +/g,"").includes(this.search.toLowerCase().replace(/ +/g,"")) ||
+          event.venue.toLowerCase().replace(/ +/g,"").includes(this.search.toLowerCase().replace(/ +/g,"")) ||
+          event.name.toLowerCase().replace(/ +/g,"").includes(this.search.toLowerCase().replace(/ +/g,"")) 
         );
       });
     },

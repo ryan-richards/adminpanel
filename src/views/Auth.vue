@@ -41,13 +41,14 @@
 <script>
 import { ref } from "vue"
 import { supabase } from "../supabase"
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const loading = ref(false)
     const email = ref("")
     const password =  ref("")
-
+    const router = useRouter();
 
     const handleLogin = async () => {
       try {
@@ -56,6 +57,7 @@ export default {
         password: password.value
         })
         alert("Logged In")
+        router.push('/')
         if (error) throw error
       } catch (error) {
         alert(error.error_description || error.message)
@@ -73,3 +75,13 @@ export default {
   },
 }
 </script>
+
+<style>
+
+input[type="password"],
+input[type="email"],
+textarea {
+  font-size: 16px;
+}
+
+</style>
