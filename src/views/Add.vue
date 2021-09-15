@@ -1,7 +1,4 @@
 <template>
-
-
-
   <div class="title">Add Event</div>
   <div class="subtitle">Enter details below</div>
   <form v-on:submit.prevent="handleSubmit" ref="Quote" name="Quote">
@@ -105,19 +102,10 @@
 
     <div class="field is-grouped">
       <div class="control">
-        <button
-          type="submit"
-          class="button"
-        >
-          Add Booking
-        </button>
+        <button type="submit" class="button">Add Booking</button>
       </div>
     </div>
   </form>
-
-
-
-  
 </template>
 
 <script>
@@ -137,22 +125,28 @@ export default {
 
     const handleSubmit = async () => {
       try {
-        const { data, error } = await supabase
-          .from("bookings")
-          .insert([
-            {
-              name: name.value,
-              email: email.value,
-              venue: venue.value,
-              guests: guests.value,
-              date: date.value,
-              price: price.value,
-              notes: notes.value,
-              mobile: mobile.value
-            },
-          ]);
+        const { data, error } = await supabase.from("bookings").insert([
+          {
+            name: name.value,
+            email: email.value,
+            venue: venue.value,
+            guests: guests.value,
+            date: date.value,
+            price: price.value,
+            notes: notes.value,
+            mobile: mobile.value,
+          },
+        ]);
         if (error) throw error;
         console.log("inserted");
+        name.value = ""
+        email.value  = ""
+        venue.value = ""
+        guests.value  = ""
+        date.value = ""
+        price.value  = ""
+        notes.value  = ""
+        mobile.value =""
       } catch (error) {
         alert(error.error_description || error.message);
       }
@@ -168,7 +162,7 @@ export default {
       notes,
       handleSubmit,
     };
-  }
+  },
 };
 </script>
 
