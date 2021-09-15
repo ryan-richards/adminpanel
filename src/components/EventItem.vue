@@ -6,7 +6,7 @@
       {{name}} : {{ formatDate(date) }} / {{formatTime(date + time)}}
     </p>
       <p v-else class="card-header-title has-text-white">
-      {{email}} : {{ formatDate(date) }} 
+      {{name}} : {{ formatDate(date) }} 
     </p>
     <button @click="expand = !expand"  class="card-header-icon" aria-label="more options">
      <span class="iconify" data-icon="uim:angle-down" data-width="35" data-height="35"></span>
@@ -24,12 +24,8 @@
     <a v-show="!paid" @click="handlePaid(id)" class="card-footer-item paid">Paid</a>
     <router-link class="card-footer-item edit" :to="`/eventedit/${id}`">Edit</router-link>
     <a v-bind:href="`mailto:` + email + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Contact</a>
-    <a @click="handleDelete(id) , removeElement()" class="card-footer-item danger">Delete</a>
   </footer>
 </div>  
-
-
-
 
 
 </template>
