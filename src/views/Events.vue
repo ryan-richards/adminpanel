@@ -51,9 +51,14 @@ export default {
     };
   },
   async mounted() {
+    var date = new Date();
+    console.log(date);
+    date = moment(date).format("YYYY,M,D");
+    console.log(date);
     const { data, error } = await supabase
       .from("bookings")
       .select("*")
+      .gte('date', date)
       .order("date", { ascending: true });
     console.log(data);
     if (error) {

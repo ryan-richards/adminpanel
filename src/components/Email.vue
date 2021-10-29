@@ -5,7 +5,7 @@
 <div v-show="show" class="card mb-5" v-for="email in emails" :key="email.id">
   <header class="card-header">
     <p class="card-header-title has-text-white">
-      {{email.email}}
+      {{email.recipient}}
     </p>
     <button class="card-header-icon" aria-label="more options">
       <span class="icon">
@@ -21,7 +21,7 @@
     </div>
   </div>
   <footer class="card-footer">
-    <a v-bind:href="`mailto:` + email.email + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Respond</a>
+    <a v-bind:href="`mailto:` + email.recipient + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Respond</a>
     <a @click="handleDelete(email.id) , removeElement()" class="card-footer-item danger">Delete</a>
   </footer>
 </div>
@@ -43,7 +43,7 @@ export default {
     },
     async mounted() {
     const { data, error } = await supabase.from('new-inquiries').select('*')
-    .order('date', { ascending: true })
+    .order('added', { ascending: false })
     console.log(data);
     if(error) {
         console.error(error);
