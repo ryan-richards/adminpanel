@@ -70,19 +70,17 @@ export default {
              } catch (error) {
                 alert(error.error_description || error.message)
              }
+} 
 
-
-
-        const handleCreateBooking = (email) => {
+       const handleCreateBooking = (email) => {
           store.createBooking.email = email.recipient
           store.createBooking.venue = email.venue
           store.createBooking.guests = email.guests
           store.createBooking.date = email.date
           console.log(store.createBooking)
         }
-           
-        } 
         return {
+          handleCreateBooking,
             handleDelete,
         }
       },
