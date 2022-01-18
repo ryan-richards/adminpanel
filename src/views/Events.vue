@@ -20,10 +20,13 @@
       Next Month
     </div>
     <div class="button" @click="(filterKey = 'year'), (yearModifier = 0)">
-      2021
+      2022
     </div>
     <div class="button" @click="(filterKey = 'year'), (yearModifier = 1)">
-      2022
+      2023
+    </div>
+    <div class="button" @click="(filterKey = 'year'), (yearModifier = 2)">
+      2024
     </div>
   </div>
 

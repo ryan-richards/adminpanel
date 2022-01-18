@@ -10,6 +10,7 @@ import AddBlog from '../views/AddBlog.vue'
 import BlogAdmin from '../views/BlogAdmin.vue'
 import BlogEdit from '../views/BlogEdit.vue'
 import EventEdit from '../views/EventEdit.vue'
+import RepliedTo from '../views/RepliedTo.vue'
 
 const routes = [
     {
@@ -70,6 +71,14 @@ const routes = [
         path: '/blogadmin',
         name: 'blogadmin',
         component: BlogAdmin,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/replied',
+        name: 'replied',
+        component: RepliedTo,
         meta: {
             requiresAuth: true
         }

@@ -111,14 +111,15 @@
 <script>
 import { ref } from "vue";
 import { supabase } from "../supabase";
+import { store } from "../store";
 
 export default {
-  setup() {
+setup() {
     const name = ref("");
-    const email = ref("");
-    const venue = ref("");
-    const guests = ref("");
-    const date = ref("");
+    const email = ref(store.createBooking.email);
+    const venue = ref(store.createBooking.venue);
+    const guests = ref(store.createBooking.guests);
+    const date = ref(store.createBooking.date);
     const price = ref("");
     const notes = ref("");
     const mobile = ref("");
@@ -147,6 +148,12 @@ export default {
         price.value  = ""
         notes.value  = ""
         mobile.value =""
+
+        store.createBooking.email = ''
+        store.createBooking.venue = ''
+        store.createBooking.guests = ''
+        store.createBooking.date = ''
+
       } catch (error) {
         alert(error.error_description || error.message);
       }

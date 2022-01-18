@@ -1,11 +1,11 @@
 <template>
-<div class="title has-text-white">Contact Form Enquiries : {{posts.length}}</div>
+<div class="title has-text-white">Replied To : {{posts.length}}</div>
 
 
-<div v-show="show" class="card mb-5" v-for="(post,index) in posts" :key="post.id">
+<div v-show="show" class="card mb-5" v-for="post in posts" :key="post.id">
   <header class="card-header">
     <p class="card-header-title has-text-white">
-      {{post.name}}
+      {{post.email}}
     </p>
     <button class="card-header-icon" aria-label="more options">
       <span class="icon">
@@ -16,7 +16,9 @@
 
   <body class="card-body p-4">
      <p class="card-body-title has-text-white">
-      {{post.venue}} : {{post.date}}
+      <p>Venue: {{post.venue}}</p>
+      <p>Guests : {{post.guests}}</p>
+      <p>Event Date : {{ formatDate(post.date) }}</p>
     </p>
     <p class="pt-4 pb-4" >
       {{post.message}}
@@ -24,9 +26,8 @@
   </body>
 
   <footer class="card-footer">
-     <a v-bind:href="`mailto:` + post.recipient + `?subject=Brook%20Avenue&body=Response`" class="card-footer-item">Respond</a>
-     <router-link @click="handleCreateBooking(post)" class="card-footer-item edit" to="/add">Create Booking</router-link>
-    <a @click="handleDelete(post.id) , removeElement(index)" class="card-footer-item danger">Delete</a>
+    <router-link @click="handleCreateBooking(post)" class="card-footer-item edit" to="/add">Create Booking</router-link>
+    <a @click="handleDelete(post.id) , removeElement()" class="card-footer-item danger">Delete</a>
   </footer>
 </div>
 
@@ -38,6 +39,8 @@
 import { supabase } from "../supabase"
 import {store } from '../store'
 
+import formatDateMixin from '../mixins/formatDateDayJs.js';
+
 export default {
     name: "blog-posts",
     data() {
@@ -47,8 +50,8 @@ export default {
         };
     },
     async mounted() {
-    const { data, error } = await supabase.from('contact').select('*')
-    .order('added', { ascending: false })
+    const { data, error } = await supabase.from('Interested').select('*')
+    .order('created_at', { ascending: false })
     console.log(data);
     if(error) {
         console.error(error);
@@ -70,20 +73,18 @@ export default {
              } catch (error) {
                 alert(error.error_description || error.message)
              }
-
-
+        } 
 
         const handleCreateBooking = (email) => {
-          store.createBooking.email = email.recipient
+          store.createBooking.email = email.email
           store.createBooking.venue = email.venue
           store.createBooking.guests = email.guests
           store.createBooking.date = email.date
           console.log(store.createBooking)
         }
-           
-        } 
         return {
-            handleDelete,
+            handleCreateBooking,
+            handleDelete
         }
       },
       methods: {
@@ -91,7 +92,17 @@ export default {
       console.log('removing')
     this.posts.splice(index, 1);
   }
-}
+},
+
+mixins: [formatDateMixin],
+        computed: {
+            formattedDate() {
+                return this.formatDate(this.date);
+            },
+            formattedTime(){
+                return this.formatTime(this.time)
+            }
+        }
       
 }
 

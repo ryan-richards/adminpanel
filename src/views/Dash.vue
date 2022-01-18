@@ -18,25 +18,27 @@
           <div class="column has-text-centered is-one-third">
             <router-link to="/inquiry">
             <div class="card p-6">
-                <div class="subtitle  has-text-white">Inquiry List</div>
-            </div>
-            </router-link> 
-        </div>
-        <div class="column has-text-centered is-one-third">
-            <router-link to="/blogadmin">
-            <div class="card blog p-6">
-                <div class="subtitle has-text-white">Blog Posts</div>
-            </div>
-            </router-link> 
-        </div>
-        <div class="column has-text-centered is-one-third">
-            <router-link to="/addblog">
-            <div class="card blog p-6">
-                <div class="subtitle  has-text-white">Add Blog Post</div>
+                <div class="subtitle  has-text-white">Enquiry List</div>
             </div>
             </router-link> 
         </div>
         
+        <div class="column has-text-centered is-one-third">
+            <router-link to="/blogadmin">
+            <div class="card p-6">
+                <div class="subtitle has-text-white">Contact List</div>
+            </div>
+            </router-link> 
+        </div>     
+
+        <div class="column has-text-centered is-one-third">
+            <router-link to="/replied">
+            <div class="card p-6">
+                <div class="subtitle has-text-white">Replied to</div>
+            </div>
+            </router-link> 
+        </div> 
+
     </div>
 </div>
     
