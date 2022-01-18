@@ -64,7 +64,7 @@ export default {
         const handleDelete = async (id) => {
             try {
               const  { data, error } = await supabase
-            .from('contact')
+            .from('Interested')
             .delete()
             .eq('id', id)
 
